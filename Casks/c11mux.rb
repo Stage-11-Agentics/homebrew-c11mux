@@ -1,6 +1,6 @@
 cask "c11mux" do
-  version "0.59.0"
-  sha256 :no_check  # TODO: pin to SHA256 of first c11mux release DMG
+  version "0.62.7"
+  sha256 "75daa044bcedf684ace5a799fa0ffbba90333b40168aa952569944f8930a76ef"
 
   url "https://github.com/Stage-11-Agentics/c11mux/releases/download/v#{version}/c11mux-macos.dmg"
   name "c11mux"
@@ -12,11 +12,12 @@ cask "c11mux" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: ">= :sonoma"
 
   conflicts_with cask: "cmux"
 
   app "c11mux.app"
+  binary "#{appdir}/c11mux.app/Contents/Resources/bin/cmux"
 
   zap trash: [
     "~/Library/Application Support/c11mux",

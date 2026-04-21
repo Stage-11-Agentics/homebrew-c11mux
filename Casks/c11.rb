@@ -1,6 +1,6 @@
 cask "c11" do
-  version "0.59.0"
-  sha256 :no_check  # TODO: pin to SHA256 of first c11 release DMG; update-homebrew.yml rewrites this file on release.
+  version "0.38.0"
+  sha256 "1c89e372ff1a55226febbddb97b32c01cbb41f6ad3a412d10bf3b029f2e689ca"
 
   url "https://github.com/Stage-11-Agentics/c11/releases/download/v#{version}/c11-macos.dmg"
   name "c11"
@@ -14,15 +14,21 @@ cask "c11" do
 
   depends_on macos: ">= :sonoma"
 
+  conflicts_with cask: "cmux"
+
   app "c11.app"
   binary "#{appdir}/c11.app/Contents/Resources/bin/c11"
+  binary "#{appdir}/c11.app/Contents/Resources/bin/c11", target: "cmux"
 
   zap trash: [
     "~/Library/Application Support/c11",
     "~/Library/Application Support/c11mux",
+    "~/Library/Application Support/cmux",
     "~/Library/Caches/c11",
     "~/Library/Caches/c11mux",
+    "~/Library/Caches/cmux",
     "~/Library/Preferences/com.stage11.c11.plist",
     "~/Library/Preferences/com.stage11.c11mux.plist",
+    "~/Library/Preferences/ai.manaflow.cmuxterm.plist",
   ]
 end
